@@ -1,18 +1,5 @@
-use std::fs::File;
-use std::io::{stdin, BufReader, Read};
-use std::path::Path;
+use std::io::stdin;
 use crate::quote::Quote;
-
-pub fn read_file(p: &str) -> String {
-    let path = Path::new(p);
-    let file = File::open(&path).expect("File not found!");
-    let mut buf_reader = BufReader::new(file);
-    let mut contents = String::new();
-    buf_reader
-        .read_to_string(&mut contents)
-        .expect("File is empty");
-    contents
-}
 
 pub fn convert_to_vec(contents: &str) -> Vec<&str> {
     contents.split("\n").into_iter().collect::<Vec<_>>()

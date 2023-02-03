@@ -1,8 +1,9 @@
+use std::fs;
 use rand::{Rng, thread_rng};
 use quotes_app::functions::*;
 
 fn main() {
-    let contents = read_file("quotes.csv");
+    let contents = fs::read_to_string("quotes.csv").unwrap();
 
     let mut new_con = convert_to_vec(&contents);
     new_con.remove(0);
