@@ -6,12 +6,12 @@ pub fn convert_to_vec(contents: &str) -> Vec<&str> {
 }
 
 pub fn create_quotes<'a>(q: &'a Vec<&str>) -> Vec<Quote<'a>> {
-    let mut quotes = Vec::<Quote>::new();
-    for quote in q.iter() {
+    q.iter()
+    .map(|quote| {
         let quote_tup = quote.split_once(",");
-        quotes.push(Quote::new(quote_tup.unwrap().0, quote_tup.unwrap().1));
-    }
-    quotes
+        Quote::new(quote_tup.unwrap().0, quote_tup.unwrap().1)
+        })
+    .collect()
 }
 
 pub fn read_input(msg: &str) -> String {
